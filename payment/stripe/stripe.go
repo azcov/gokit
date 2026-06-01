@@ -20,8 +20,8 @@ type Stripe struct {
 }
 
 type Config struct {
-	SecretKey     string `env:"SECRET_KEY" json:"secret_key" yaml:"secret_key"`
-	WebhookSecret string `env:"WEBHOOK_SECRET" json:"webhook_secret" yaml:"webhook_secret"`
+	SecretKey     string `config:"secret_key"`
+	WebhookSecret string `config:"webhook_secret"`
 }
 
 func New(cfg Config) *Stripe {

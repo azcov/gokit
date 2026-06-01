@@ -15,8 +15,8 @@ type Kafka struct {
 }
 
 type Config struct {
-	Brokers []string       `env:"BROKERS" json:"brokers" yaml:"brokers"`
-	GroupID string         `env:"GROUP_ID" json:"group_id" yaml:"group_id"`
+	Brokers []string       `config:"brokers"`
+	GroupID string         `config:"group_id"`
 	Config  *sarama.Config `json:"-" yaml:"-"`
 }
 

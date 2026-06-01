@@ -46,8 +46,8 @@ type Server struct {
 var _ queue.Worker = (*Server)(nil)
 
 type ServerConfig struct {
-	RedisAddr   string         `env:"REDIS_ADDRESS" json:"redis_address" yaml:"redis_address"`
-	Concurrency int            `env:"CONCURRENCY" json:"concurrency" yaml:"concurrency"`
+	RedisAddr   string         `config:"redis_address"`
+	Concurrency int            `config:"concurrency"`
 	Queues      map[string]int `json:"queues" yaml:"queues"`
 }
 

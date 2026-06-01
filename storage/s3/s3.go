@@ -21,9 +21,9 @@ type S3 struct {
 
 type Config struct {
 	AWSConfig aws.Config `json:"-" yaml:"-"`
-	Bucket    string     `env:"BUCKET" json:"bucket" yaml:"bucket"`
+	Bucket    string     `config:"bucket"`
 	// Endpoint overrides the default endpoint; used for S3-compatible APIs (e.g. R2).
-	Endpoint string `env:"ENDPOINT" json:"endpoint" yaml:"endpoint"`
+	Endpoint string `config:"endpoint"`
 }
 
 func New(cfg Config) *S3 {

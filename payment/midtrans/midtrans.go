@@ -26,8 +26,8 @@ type Midtrans struct {
 }
 
 type Config struct {
-	ServerKey    string `env:"SERVER_KEY" json:"server_key" yaml:"server_key"`
-	IsProduction bool   `env:"IS_PRODUCTION" json:"is_production" yaml:"is_production"`
+	ServerKey    string `config:"server_key"`
+	IsProduction bool   `config:"is_production"`
 }
 
 func New(cfg Config) *Midtrans {

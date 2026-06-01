@@ -23,9 +23,9 @@ type Razorpay struct {
 }
 
 type Config struct {
-	KeyID         string `env:"KEY_ID" json:"key_id" yaml:"key_id"`
-	KeySecret     string `env:"KEY_SECRET" json:"key_secret" yaml:"key_secret"`
-	WebhookSecret string `env:"WEBHOOK_SECRET" json:"webhook_secret" yaml:"webhook_secret"`
+	KeyID         string `config:"key_id"`
+	KeySecret     string `config:"key_secret"`
+	WebhookSecret string `config:"webhook_secret"`
 }
 
 func New(cfg Config) *Razorpay {

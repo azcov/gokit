@@ -10,10 +10,10 @@ import (
 )
 
 type Config struct {
-	AccountID       string `env:"ACCOUNT_ID" json:"account_id" yaml:"account_id"`
-	AccessKeyID     string `env:"ACCESS_KEY_ID" json:"access_key_id" yaml:"access_key_id"`
-	AccessKeySecret string `env:"ACCESS_KEY_SECRET" json:"access_key_secret" yaml:"access_key_secret"`
-	Bucket          string `env:"BUCKET" json:"bucket" yaml:"bucket"`
+	AccountID       string `config:"account_id"`
+	AccessKeyID     string `config:"access_key_id"`
+	AccessKeySecret string `config:"access_key_secret"`
+	Bucket          string `config:"bucket"`
 }
 
 // New returns an S3-compatible client pointed at Cloudflare R2.

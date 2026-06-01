@@ -20,7 +20,7 @@ type GCS struct {
 }
 
 type Config struct {
-	Bucket  string                `env:"BUCKET" json:"bucket" yaml:"bucket"`
+	Bucket  string                `config:"bucket"`
 	Options []option.ClientOption `json:"-" yaml:"-"`
 }
 

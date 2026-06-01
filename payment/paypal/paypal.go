@@ -21,10 +21,10 @@ type PayPal struct {
 }
 
 type Config struct {
-	ClientID     string `env:"CLIENT_ID" json:"client_id" yaml:"client_id"`
-	ClientSecret string `env:"CLIENT_SECRET" json:"client_secret" yaml:"client_secret"`
-	WebhookID    string `env:"WEBHOOK_ID" json:"webhook_id" yaml:"webhook_id"`
-	IsProduction bool   `env:"IS_PRODUCTION" json:"is_production" yaml:"is_production"`
+	ClientID     string `config:"client_id"`
+	ClientSecret string `config:"client_secret"`
+	WebhookID    string `config:"webhook_id"`
+	IsProduction bool   `config:"is_production"`
 }
 
 func New(ctx context.Context, cfg Config) (*PayPal, error) {

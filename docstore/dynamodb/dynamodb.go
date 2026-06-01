@@ -22,7 +22,7 @@ type DynamoDB struct {
 type Config struct {
 	AWSConfig aws.Config `json:"-" yaml:"-"`
 	// PartitionKey is the DynamoDB attribute name used as the document ID. Defaults to "id".
-	PartitionKey string `env:"PARTITION_KEY" json:"partition_key" yaml:"partition_key"`
+	PartitionKey string `config:"partition_key"`
 }
 
 func New(cfg Config) *DynamoDB {

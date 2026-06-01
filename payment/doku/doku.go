@@ -30,9 +30,9 @@ type DOKU struct {
 }
 
 type Config struct {
-	ClientID     string `env:"CLIENT_ID" json:"client_id" yaml:"client_id"`
-	SecretKey    string `env:"SECRET_KEY" json:"secret_key" yaml:"secret_key"`
-	IsProduction bool   `env:"IS_PRODUCTION" json:"is_production" yaml:"is_production"`
+	ClientID     string `config:"client_id"`
+	SecretKey    string `config:"secret_key"`
+	IsProduction bool   `config:"is_production"`
 }
 
 func New(cfg Config) *DOKU {

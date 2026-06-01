@@ -15,8 +15,8 @@ type Mongo struct {
 }
 
 type Config struct {
-	URI      string `env:"URI" json:"uri" yaml:"uri"`
-	Database string `env:"DATABASE" json:"database" yaml:"database"`
+	URI      string `config:"uri"`
+	Database string `config:"database"`
 }
 
 func New(ctx context.Context, cfg Config) (*Mongo, error) {

@@ -20,10 +20,10 @@ type SMTP struct {
 }
 
 type Config struct {
-	Host     string `env:"HOST" json:"host" yaml:"host"`
-	Port     int    `env:"PORT" json:"port" yaml:"port"`
-	Username string `env:"USERNAME" json:"username" yaml:"username"`
-	Password string `env:"PASSWORD" json:"password" yaml:"password"`
+	Host     string `config:"host"`
+	Port     int    `config:"port"`
+	Username string `config:"username"`
+	Password string `config:"password"`
 }
 
 func New(cfg Config) *SMTP {

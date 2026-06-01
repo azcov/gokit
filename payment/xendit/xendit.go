@@ -20,8 +20,8 @@ type Xendit struct {
 }
 
 type Config struct {
-	SecretKey     string `env:"SECRET_KEY" json:"secret_key" yaml:"secret_key"`
-	CallbackToken string `env:"CALLBACK_TOKEN" json:"callback_token" yaml:"callback_token"`
+	SecretKey     string `config:"secret_key"`
+	CallbackToken string `config:"callback_token"`
 }
 
 func New(cfg Config) *Xendit {
