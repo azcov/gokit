@@ -31,3 +31,4 @@ go.work.sum
 
 # Planning (internal only)
 .planning/
+PROMPT.md
