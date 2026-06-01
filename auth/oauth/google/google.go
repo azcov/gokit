@@ -32,6 +32,10 @@ type Google struct {
 	clientID     string
 	clientSecret string
 	httpClient   *http.Client
+	// endpoint and userInfo are overridable so tests can point at a local
+	// server; they default to Google's production endpoints.
+	endpoint oauth2.Endpoint
+	userInfo string
 }
 
 func New(cfg Config) *Google {
@@ -39,6 +43,8 @@ func New(cfg Config) *Google {
 		clientID:     cfg.ClientID,
 		clientSecret: cfg.ClientSecret,
 		httpClient:   &http.Client{Timeout: 10 * time.Second},
+		endpoint:     googleOAuth.Endpoint,
+		userInfo:     userInfoURL,
 	}
 }
 
@@ -92,7 +98,7 @@ func (g *Google) config(redirectURI string, scopes []string) *oauth2.Config {
 		ClientSecret: g.clientSecret,
 		RedirectURL:  redirectURI,
 		Scopes:       scopes,
-		Endpoint:     googleOAuth.Endpoint,
+		Endpoint:     g.endpoint,
 	}
 }
 
@@ -105,7 +111,7 @@ type googleUser struct {
 }
 
 func (g *Google) fetchUser(ctx context.Context, accessToken string) (*auth.User, error) {
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, userInfoURL, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, g.userInfo, nil)
 	if err != nil {
 		return nil, fmt.Errorf("google oauth: user info request: %w", err)
 	}

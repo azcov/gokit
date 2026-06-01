@@ -34,6 +34,8 @@ type Twitter struct {
 	clientID     string
 	clientSecret string
 	httpClient   *http.Client
+	endpoint     oauth2.Endpoint
+	userInfo     string
 }
 
 func New(cfg Config) *Twitter {
@@ -41,6 +43,8 @@ func New(cfg Config) *Twitter {
 		clientID:     cfg.ClientID,
 		clientSecret: cfg.ClientSecret,
 		httpClient:   &http.Client{Timeout: 10 * time.Second},
+		endpoint:     endpoint,
+		userInfo:     userInfoURL,
 	}
 }
 
@@ -96,7 +100,7 @@ func (t *Twitter) config(redirectURI string, scopes []string) *oauth2.Config {
 		ClientSecret: t.clientSecret,
 		RedirectURL:  redirectURI,
 		Scopes:       scopes,
-		Endpoint:     endpoint,
+		Endpoint:     t.endpoint,
 	}
 }
 
@@ -110,7 +114,7 @@ type twitterResponse struct {
 }
 
 func (t *Twitter) fetchUser(ctx context.Context, accessToken string) (*auth.User, error) {
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, userInfoURL, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, t.userInfo, nil)
 	if err != nil {
 		return nil, fmt.Errorf("twitter oauth: build request: %w", err)
 	}

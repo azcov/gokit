@@ -28,6 +28,8 @@ type Facebook struct {
 	clientID     string
 	clientSecret string
 	httpClient   *http.Client
+	endpoint     oauth2.Endpoint
+	userInfo     string
 }
 
 func New(cfg Config) *Facebook {
@@ -35,6 +37,8 @@ func New(cfg Config) *Facebook {
 		clientID:     cfg.ClientID,
 		clientSecret: cfg.ClientSecret,
 		httpClient:   &http.Client{Timeout: 10 * time.Second},
+		endpoint:     facebookOAuth.Endpoint,
+		userInfo:     userInfoURL,
 	}
 }
 
@@ -84,7 +88,7 @@ func (f *Facebook) config(redirectURI string, scopes []string) *oauth2.Config {
 		ClientSecret: f.clientSecret,
 		RedirectURL:  redirectURI,
 		Scopes:       scopes,
-		Endpoint:     facebookOAuth.Endpoint,
+		Endpoint:     f.endpoint,
 	}
 }
 
@@ -101,7 +105,7 @@ type fbUser struct {
 
 func (f *Facebook) fetchUser(ctx context.Context, accessToken string) (*auth.User, error) {
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet,
-		userInfoURL+"&access_token="+accessToken, nil)
+		f.userInfo+"&access_token="+accessToken, nil)
 	if err != nil {
 		return nil, fmt.Errorf("facebook oauth: build request: %w", err)
 	}

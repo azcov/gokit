@@ -32,6 +32,9 @@ type GitHub struct {
 	clientID     string
 	clientSecret string
 	httpClient   *http.Client
+	endpoint     oauth2.Endpoint
+	userURL      string
+	emailURL     string
 }
 
 func New(cfg Config) *GitHub {
@@ -39,6 +42,9 @@ func New(cfg Config) *GitHub {
 		clientID:     cfg.ClientID,
 		clientSecret: cfg.ClientSecret,
 		httpClient:   &http.Client{Timeout: 10 * time.Second},
+		endpoint:     githubOAuth.Endpoint,
+		userURL:      userURL,
+		emailURL:     emailURL,
 	}
 }
 
@@ -89,7 +95,7 @@ func (g *GitHub) config(redirectURI string, scopes []string) *oauth2.Config {
 		ClientSecret: g.clientSecret,
 		RedirectURL:  redirectURI,
 		Scopes:       scopes,
-		Endpoint:     githubOAuth.Endpoint,
+		Endpoint:     g.endpoint,
 	}
 }
 
@@ -109,7 +115,7 @@ type githubEmail struct {
 
 func (g *GitHub) fetchUser(ctx context.Context, token string) (*auth.User, error) {
 	var gu githubUser
-	if err := g.get(ctx, token, userURL, &gu); err != nil {
+	if err := g.get(ctx, token, g.userURL, &gu); err != nil {
 		return nil, fmt.Errorf("github oauth: fetch user: %w", err)
 	}
 
@@ -117,7 +123,7 @@ func (g *GitHub) fetchUser(ctx context.Context, token string) (*auth.User, error
 	emailVerified := false
 	if email == "" {
 		var emails []githubEmail
-		if err := g.get(ctx, token, emailURL, &emails); err == nil {
+		if err := g.get(ctx, token, g.emailURL, &emails); err == nil {
 			for _, e := range emails {
 				if e.Primary {
 					email = e.Email

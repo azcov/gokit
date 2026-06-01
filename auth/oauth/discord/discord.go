@@ -32,6 +32,8 @@ type Discord struct {
 	clientID     string
 	clientSecret string
 	httpClient   *http.Client
+	endpoint     oauth2.Endpoint
+	userInfo     string
 }
 
 func New(cfg Config) *Discord {
@@ -39,6 +41,8 @@ func New(cfg Config) *Discord {
 		clientID:     cfg.ClientID,
 		clientSecret: cfg.ClientSecret,
 		httpClient:   &http.Client{Timeout: 10 * time.Second},
+		endpoint:     endpoint,
+		userInfo:     userInfoURL,
 	}
 }
 
@@ -89,7 +93,7 @@ func (d *Discord) config(redirectURI string, scopes []string) *oauth2.Config {
 		ClientSecret: d.clientSecret,
 		RedirectURL:  redirectURI,
 		Scopes:       scopes,
-		Endpoint:     endpoint,
+		Endpoint:     d.endpoint,
 	}
 }
 
@@ -103,7 +107,7 @@ type discordUser struct {
 }
 
 func (d *Discord) fetchUser(ctx context.Context, accessToken string) (*auth.User, error) {
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, userInfoURL, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, d.userInfo, nil)
 	if err != nil {
 		return nil, fmt.Errorf("discord oauth: build request: %w", err)
 	}

@@ -32,6 +32,8 @@ type Microsoft struct {
 	clientSecret string
 	tenantID     string
 	httpClient   *http.Client
+	endpoint     oauth2.Endpoint
+	userInfo     string
 }
 
 func New(cfg Config) *Microsoft {
@@ -43,6 +45,8 @@ func New(cfg Config) *Microsoft {
 		clientSecret: cfg.ClientSecret,
 		tenantID:     cfg.TenantID,
 		httpClient:   &http.Client{Timeout: 10 * time.Second},
+		endpoint:     microsoftOAuth.AzureADEndpoint(cfg.TenantID),
+		userInfo:     userInfoURL,
 	}
 }
 
@@ -93,7 +97,7 @@ func (m *Microsoft) config(redirectURI string, scopes []string) *oauth2.Config {
 		ClientSecret: m.clientSecret,
 		RedirectURL:  redirectURI,
 		Scopes:       scopes,
-		Endpoint:     microsoftOAuth.AzureADEndpoint(m.tenantID),
+		Endpoint:     m.endpoint,
 	}
 }
 
@@ -105,7 +109,7 @@ type msUser struct {
 }
 
 func (m *Microsoft) fetchUser(ctx context.Context, accessToken string) (*auth.User, error) {
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, userInfoURL, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, m.userInfo, nil)
 	if err != nil {
 		return nil, fmt.Errorf("microsoft oauth: build request: %w", err)
 	}
