@@ -8,9 +8,9 @@ import (
 )
 
 type AppConfig struct {
-	Name    string  `config:"name" validate:"required"`
-	Port    int     `config:"port"`
-	Version string  `config:"version"`
+	Name    string   `config:"name" validate:"required"`
+	Port    int      `config:"port"`
+	Version string   `config:"version"`
 	DB      DBConfig `config:"db"`
 }
 

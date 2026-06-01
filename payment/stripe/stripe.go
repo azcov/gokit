@@ -97,13 +97,13 @@ func (s *Stripe) VerifyWebhook(_ context.Context, payload []byte, headers map[st
 
 func toCharge(pi *gostripe.PaymentIntent) *payment.Charge {
 	c := &payment.Charge{
-		ID:          pi.ID,
-		ExternalID:  pi.ID,
-		Amount:      pi.Amount,
-		Currency:    payment.Currency(pi.Currency),
-		Status:      mapStripeStatus(string(pi.Status)),
-		CreatedAt:   time.Unix(pi.Created, 0),
-		Meta:        map[string]any{"client_secret": pi.ClientSecret},
+		ID:         pi.ID,
+		ExternalID: pi.ID,
+		Amount:     pi.Amount,
+		Currency:   payment.Currency(pi.Currency),
+		Status:     mapStripeStatus(string(pi.Status)),
+		CreatedAt:  time.Unix(pi.Created, 0),
+		Meta:       map[string]any{"client_secret": pi.ClientSecret},
 	}
 	if pi.Description != "" {
 		c.Description = pi.Description

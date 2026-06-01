@@ -485,7 +485,7 @@ type Config struct {
 
 ## Requirements
 
-- Go 1.21+
+- Go 1.26+ (or any Go 1.21+ with `GOTOOLCHAIN=auto`, which auto-fetches the required toolchain)
 - Import only the providers you need — unused providers add zero overhead
 
 ---

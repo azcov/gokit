@@ -8,8 +8,8 @@ import (
 	"github.com/azcov/gokit/config"
 	"github.com/azcov/gokit/geo"
 	"github.com/azcov/gokit/monitoring"
-	"github.com/azcov/gokit/tracking"
 	"github.com/azcov/gokit/tracing"
+	"github.com/azcov/gokit/tracking"
 	"github.com/azcov/gokit/vector"
 )
 
@@ -63,9 +63,9 @@ type AIConfig struct {
 	Ollama     ai.Config `config:"ollama"`
 	Cohere     ai.Config `config:"cohere"`
 	OpenRouter struct {
-		ai.Config            // BaseURL, Model, APIKey, Timeout
-		Referer  string `config:"referer"`
-		AppTitle string `config:"app_title"`
+		ai.Config        // BaseURL, Model, APIKey, Timeout
+		Referer   string `config:"referer"`
+		AppTitle  string `config:"app_title"`
 	} `config:"openrouter"`
 }
 
@@ -73,10 +73,10 @@ type AIConfig struct {
 // analytics.Config is the domain config reused by all analytics providers.
 
 type AnalyticsConfig struct {
-	PostHog    analytics.Config `config:"posthog"`
-	Mixpanel   analytics.Config `config:"mixpanel"`
-	Segment    analytics.Config `config:"segment"`
-	Amplitude  analytics.Config `config:"amplitude"`
+	PostHog     analytics.Config `config:"posthog"`
+	Mixpanel    analytics.Config `config:"mixpanel"`
+	Segment     analytics.Config `config:"segment"`
+	Amplitude   analytics.Config `config:"amplitude"`
 	RudderStack analytics.Config `config:"rudderstack"`
 }
 
@@ -394,8 +394,8 @@ type MonitoringConfig struct {
 	Prometheus monitoring.Config `config:"prometheus"`
 	StatsD     struct {
 		monitoring.Config        // ServiceName, Endpoint
-		Addr   string `config:"addr"`
-		Prefix string `config:"prefix"`
+		Addr              string `config:"addr"`
+		Prefix            string `config:"prefix"`
 	} `config:"statsd"`
 	Datadog struct {
 		monitoring.Config
@@ -638,9 +638,9 @@ type TrackingConfig struct {
 	Rollbar  tracking.Config `config:"rollbar"`
 	Bugsnag  tracking.Config `config:"bugsnag"`
 	NewRelic struct {
-		tracking.Config              // Environment, Release
-		LicenseKey string `config:"license_key"`
-		AppName    string `config:"app_name"`
+		tracking.Config        // Environment, Release
+		LicenseKey      string `config:"license_key"`
+		AppName         string `config:"app_name"`
 	} `config:"newrelic"`
 }
 
@@ -648,11 +648,11 @@ type TrackingConfig struct {
 // tracing.Config is the domain config (ServiceName, Endpoint, SampleRate, Timeout).
 
 type TracingConfig struct {
-	OTel      tracing.Config `config:"otel"`
-	Datadog   tracing.Config `config:"datadog"`
-	Jaeger    tracing.Config `config:"jaeger"`
-	Zipkin    tracing.Config `config:"zipkin"`
-	XRay      struct {
+	OTel    tracing.Config `config:"otel"`
+	Datadog tracing.Config `config:"datadog"`
+	Jaeger  tracing.Config `config:"jaeger"`
+	Zipkin  tracing.Config `config:"zipkin"`
+	XRay    struct {
 		tracing.Config
 		Region     string `config:"region"`
 		DaemonAddr string `config:"daemon_addr"`

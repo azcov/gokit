@@ -202,9 +202,9 @@ func TestSourceFunc(t *testing.T) {
 }
 
 func TestFromDotenvBackwardCompat(t *testing.T) {
-	cleanup := setEnvCleaner(t, "NAME")
+	cleanup := setEnvCleaner(t, "VAL")
 	defer cleanup()
-	os.Setenv("NAME", "dotenv-test")
+	os.Setenv("VAL", "dotenv-test")
 
 	cfg := &emptyCfg{}
 	src := FromDotenv()

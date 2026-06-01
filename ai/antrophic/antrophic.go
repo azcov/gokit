@@ -14,13 +14,13 @@ import (
 var _ ai.Provider = (*Anthropic)(nil)
 
 const (
-	defaultBaseURL        = "https://api.anthropic.com/v1"
-	defaultModel          = "claude-3-5-sonnet-20241022"
-	defaultMaxTokens      = 1024
-	defaultTimeout        = 30 * time.Second
-	anthropicVersion      = "2023-06-01"
+	defaultBaseURL         = "https://api.anthropic.com/v1"
+	defaultModel           = "claude-3-5-sonnet-20241022"
+	defaultMaxTokens       = 1024
+	defaultTimeout         = 30 * time.Second
+	anthropicVersion       = "2023-06-01"
 	anthropicVersionHeader = "anthropic-version"
-	apiKeyHeader          = "x-api-key"
+	apiKeyHeader           = "x-api-key"
 )
 
 type Anthropic struct {

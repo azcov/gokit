@@ -34,7 +34,10 @@ type SourceError struct {
 }
 
 func (e *SourceError) Error() string {
-	return fmt.Sprintf("config source %s (%s): %v", e.Source, e.Path, e.Err)
+	if e.Path == "" {
+		return fmt.Sprintf("source %s: %v", e.Source, e.Err)
+	}
+	return fmt.Sprintf("source %s (%s): %v", e.Source, e.Path, e.Err)
 }
 
 func (e *SourceError) Unwrap() error {

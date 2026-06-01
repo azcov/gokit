@@ -65,9 +65,9 @@ type sentryException struct {
 }
 
 type sentryExceptionValue struct {
-	Type       string       `json:"type"`
-	Value      string       `json:"value"`
-	Stacktrace *stacktrace  `json:"stacktrace,omitempty"`
+	Type       string      `json:"type"`
+	Value      string      `json:"value"`
+	Stacktrace *stacktrace `json:"stacktrace,omitempty"`
 }
 
 type stacktrace struct {

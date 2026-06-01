@@ -17,7 +17,7 @@ type Firestore struct {
 }
 
 type Config struct {
-	ProjectID string              `config:"project_id"`
+	ProjectID string                `config:"project_id"`
 	Options   []option.ClientOption `json:"-" yaml:"-"`
 }
 

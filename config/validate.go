@@ -90,28 +90,28 @@ func validateRecursive(v reflect.Value, prefix []string, errs *[]FieldError) {
 				continue
 			}
 
-		switch {
-		case rule == "required":
-			if fv.IsZero() {
-				*errs = append(*errs, FieldError{Path: p, Tag: "required", Value: fv.Interface()})
+			switch {
+			case rule == "required":
+				if fv.IsZero() {
+					*errs = append(*errs, FieldError{Path: p, Tag: "required", Value: fv.Interface()})
+				}
+
+			case strings.HasPrefix(rule, "min="):
+				val := strings.TrimPrefix(rule, "min=")
+				validateMin(fv, val, p, errs)
+
+			case strings.HasPrefix(rule, "max="):
+				val := strings.TrimPrefix(rule, "max=")
+				validateMax(fv, val, p, errs)
+
+			case strings.HasPrefix(rule, "len="):
+				val := strings.TrimPrefix(rule, "len=")
+				validateLen(fv, val, p, errs)
+
+			case strings.HasPrefix(rule, "oneof="):
+				opts := strings.TrimPrefix(rule, "oneof=")
+				validateOneOf(fv, opts, p, errs)
 			}
-
-		case strings.HasPrefix(rule, "min="):
-			val := strings.TrimPrefix(rule, "min=")
-			validateMin(fv, val, p, errs)
-
-		case strings.HasPrefix(rule, "max="):
-			val := strings.TrimPrefix(rule, "max=")
-			validateMax(fv, val, p, errs)
-
-		case strings.HasPrefix(rule, "len="):
-			val := strings.TrimPrefix(rule, "len=")
-			validateLen(fv, val, p, errs)
-
-		case strings.HasPrefix(rule, "oneof="):
-			opts := strings.TrimPrefix(rule, "oneof=")
-			validateOneOf(fv, opts, p, errs)
-		}
 		}
 	}
 }

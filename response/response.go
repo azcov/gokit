@@ -6,10 +6,10 @@ import (
 )
 
 type Envelope struct {
-	Success bool   `json:"success"`
-	Data    any    `json:"data,omitempty"`
-	Error   *Err   `json:"error,omitempty"`
-	Meta    *Meta  `json:"meta,omitempty"`
+	Success bool  `json:"success"`
+	Data    any   `json:"data,omitempty"`
+	Error   *Err  `json:"error,omitempty"`
+	Meta    *Meta `json:"meta,omitempty"`
 }
 
 type Err struct {
@@ -18,9 +18,9 @@ type Err struct {
 }
 
 type Meta struct {
-	Page    int `json:"page"`
-	Limit   int `json:"limit"`
-	Total   int `json:"total"`
+	Page    int  `json:"page"`
+	Limit   int  `json:"limit"`
+	Total   int  `json:"total"`
 	HasNext bool `json:"has_next"`
 }
 
@@ -42,9 +42,9 @@ func Error(w http.ResponseWriter, status int, code, message string) {
 	_ = json.NewEncoder(w).Encode(Envelope{Success: false, Error: &Err{Code: code, Message: message}})
 }
 
-func OK(w http.ResponseWriter, data any)              { JSON(w, http.StatusOK, data) }
-func Created(w http.ResponseWriter, data any)         { JSON(w, http.StatusCreated, data) }
-func NoContent(w http.ResponseWriter)                 { w.WriteHeader(http.StatusNoContent) }
+func OK(w http.ResponseWriter, data any)      { JSON(w, http.StatusOK, data) }
+func Created(w http.ResponseWriter, data any) { JSON(w, http.StatusCreated, data) }
+func NoContent(w http.ResponseWriter)         { w.WriteHeader(http.StatusNoContent) }
 func BadRequest(w http.ResponseWriter, code, msg string) {
 	Error(w, http.StatusBadRequest, code, msg)
 }

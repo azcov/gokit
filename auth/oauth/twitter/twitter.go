@@ -16,9 +16,9 @@ var _ auth.OAuthProvider = (*Twitter)(nil)
 
 // Twitter OAuth 2.0 (PKCE) endpoint.
 var endpoint = oauth2.Endpoint{
-	AuthURL:       "https://twitter.com/i/oauth2/authorize",
-	TokenURL:      "https://api.twitter.com/2/oauth2/token",
-	AuthStyle:     oauth2.AuthStyleInHeader,
+	AuthURL:   "https://twitter.com/i/oauth2/authorize",
+	TokenURL:  "https://api.twitter.com/2/oauth2/token",
+	AuthStyle: oauth2.AuthStyleInHeader,
 }
 
 const userInfoURL = "https://api.twitter.com/2/users/me?user.fields=name,username,profile_image_url"

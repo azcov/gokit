@@ -11,10 +11,10 @@ type walkFlat struct {
 }
 
 type walkNested struct {
-	Name    string           `config:"name"`
-	Nested  walkInner        `config:"nested"`
-	PtrNest *walkInner       `config:"ptr"`
-	Ignored string           `config:"-"`
+	Name    string     `config:"name"`
+	Nested  walkInner  `config:"nested"`
+	PtrNest *walkInner `config:"ptr"`
+	Ignored string     `config:"-"`
 	NoTag   string
 	unexp   string
 }

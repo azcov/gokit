@@ -19,8 +19,8 @@ const zipkinSpansPath = "/api/v2/spans"
 
 // Tracer sends spans to a Zipkin server using the v2 JSON API.
 type Tracer struct {
-	cfg     tracing.Config
-	client  *http.Client
+	cfg    tracing.Config
+	client *http.Client
 }
 
 func New(cfg tracing.Config) *Tracer {

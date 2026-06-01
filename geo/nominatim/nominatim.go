@@ -47,23 +47,23 @@ type searchResult struct {
 	Lat         string `json:"lat"`
 	Lon         string `json:"lon"`
 	Address     struct {
-		Road        string `json:"road"`
-		City        string `json:"city"`
-		Town        string `json:"town"`
-		Village     string `json:"village"`
-		State       string `json:"state"`
-		Country     string `json:"country"`
-		PostalCode  string `json:"postcode"`
+		Road       string `json:"road"`
+		City       string `json:"city"`
+		Town       string `json:"town"`
+		Village    string `json:"village"`
+		State      string `json:"state"`
+		Country    string `json:"country"`
+		PostalCode string `json:"postcode"`
 	} `json:"address"`
 }
 
 func (n *Nominatim) Geocode(ctx context.Context, address string) ([]geo.Result, error) {
 	params := url.Values{
-		"q":              {address},
-		"format":         {"json"},
-		"addressdetails": {"1"},
+		"q":               {address},
+		"format":          {"json"},
+		"addressdetails":  {"1"},
 		"accept-language": {n.cfg.Language},
-		"limit":          {"5"},
+		"limit":           {"5"},
 	}
 	var raw []searchResult
 	if err := n.get(ctx, "/search", params, &raw); err != nil {
@@ -129,7 +129,7 @@ func toResult(r searchResult) geo.Result {
 		city = r.Address.Village
 	}
 	return geo.Result{
-		Name: r.DisplayName,
+		Name:     r.DisplayName,
 		Location: geo.Location{Lat: lat, Lon: lon},
 		Address: geo.Address{
 			Street:     r.Address.Road,

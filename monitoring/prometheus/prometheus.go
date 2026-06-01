@@ -25,7 +25,7 @@ type Provider struct {
 type entryKind int
 
 const (
-	kindCounter   entryKind = iota
+	kindCounter entryKind = iota
 	kindGauge
 	kindHistogram
 )

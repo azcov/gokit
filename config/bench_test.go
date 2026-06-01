@@ -8,11 +8,11 @@ import (
 )
 
 type benchConfig struct {
-	Name    string       `config:"name"`
-	Count   int          `config:"count"`
-	Enabled bool         `config:"enabled"`
-	Nested  benchNested  `config:"nested"`
-	Deep    benchDeep    `config:"deep"`
+	Name    string      `config:"name"`
+	Count   int         `config:"count"`
+	Enabled bool        `config:"enabled"`
+	Nested  benchNested `config:"nested"`
+	Deep    benchDeep   `config:"deep"`
 }
 
 type benchNested struct {

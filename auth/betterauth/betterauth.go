@@ -286,7 +286,9 @@ func (b *BetterAuth) do(req *http.Request, out any) error {
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode >= 400 {
-		var e struct{ Message string `json:"message"` }
+		var e struct {
+			Message string `json:"message"`
+		}
 		_ = json.NewDecoder(resp.Body).Decode(&e)
 		if e.Message != "" {
 			return errors.New("betterauth: " + e.Message)

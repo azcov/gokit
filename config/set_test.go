@@ -77,12 +77,12 @@ func TestSetField(t *testing.T) {
 				if gotF != wantF {
 					t.Fatalf("got %v, want %v", gotF, wantF)
 				}
-		} else if tt.name == "text_unmarshaler" {
-			gotC := got.(textUnmarshalerCustom)
-			wantC := tt.want.(textUnmarshalerCustom)
-			if gotC.Value != wantC.Value {
-				t.Fatalf("got %v, want %v", gotC.Value, wantC.Value)
-			}
+			} else if tt.name == "text_unmarshaler" {
+				gotC := got.(textUnmarshalerCustom)
+				wantC := tt.want.(textUnmarshalerCustom)
+				if gotC.Value != wantC.Value {
+					t.Fatalf("got %v, want %v", gotC.Value, wantC.Value)
+				}
 			} else if got != tt.want {
 				t.Fatalf("got %v (%T), want %v (%T)", got, got, tt.want, tt.want)
 			}

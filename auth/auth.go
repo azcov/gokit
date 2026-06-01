@@ -86,12 +86,12 @@ type LoginResponse struct {
 }
 
 type RegisterRequest struct {
-	Email     string
-	Phone     string
-	Password  string
-	Name      string
-	Roles     []string
-	Meta      map[string]any
+	Email    string
+	Phone    string
+	Password string
+	Name     string
+	Roles    []string
+	Meta     map[string]any
 }
 
 type UpdateUserRequest struct {

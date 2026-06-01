@@ -14,8 +14,8 @@ import (
 var _ gokithttp.Client = (*Client)(nil)
 
 type Client struct {
-	cfg    gokithttp.ClientConfig
-	inner  *http.Client
+	cfg   gokithttp.ClientConfig
+	inner *http.Client
 }
 
 func New(cfg gokithttp.ClientConfig) *Client {

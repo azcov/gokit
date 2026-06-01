@@ -98,7 +98,7 @@ port: 9000`)
 
 func TestJsonArraysAndMaps(t *testing.T) {
 	type jsonComplex struct {
-		Tags []string `config:"tags"`
+		Tags []string          `config:"tags"`
 		Meta map[string]string `config:"meta"`
 	}
 

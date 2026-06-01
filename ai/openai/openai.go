@@ -39,9 +39,9 @@ func New(cfg ai.Config) *OpenAI {
 }
 
 type chatRequest struct {
-	Model    string          `json:"model"`
-	Messages []chatMessage   `json:"messages"`
-	MaxTokens int            `json:"max_tokens,omitempty"`
+	Model     string        `json:"model"`
+	Messages  []chatMessage `json:"messages"`
+	MaxTokens int           `json:"max_tokens,omitempty"`
 }
 
 type chatMessage struct {

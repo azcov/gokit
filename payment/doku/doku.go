@@ -55,14 +55,14 @@ type createInvoiceReq struct {
 }
 
 type orderData struct {
-	InvoiceNumber string `json:"invoice_number"`
+	InvoiceNumber string     `json:"invoice_number"`
 	LineItems     []lineItem `json:"line_items"`
 }
 
 type lineItem struct {
-	Name   string `json:"name"`
-	Price  int64  `json:"price"`
-	Qty    int    `json:"quantity"`
+	Name  string `json:"name"`
+	Price int64  `json:"price"`
+	Qty   int    `json:"quantity"`
 }
 
 type customerData struct {

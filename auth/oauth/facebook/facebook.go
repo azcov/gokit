@@ -93,7 +93,9 @@ type fbUser struct {
 	Name    string `json:"name"`
 	Email   string `json:"email"`
 	Picture struct {
-		Data struct{ URL string `json:"url"` } `json:"data"`
+		Data struct {
+			URL string `json:"url"`
+		} `json:"data"`
 	} `json:"picture"`
 }
 

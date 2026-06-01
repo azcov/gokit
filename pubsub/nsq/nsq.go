@@ -18,8 +18,8 @@ type NSQ struct {
 }
 
 type Config struct {
-	NSQDAddr    string       `config:"nsqd_address"`
-	LookupdAddr string       `config:"lookupd_address"`
+	NSQDAddr    string        `config:"nsqd_address"`
+	LookupdAddr string        `config:"lookupd_address"`
 	Config      *gonsq.Config `json:"-" yaml:"-"`
 }
 
