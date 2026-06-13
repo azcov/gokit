@@ -12,6 +12,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue v1.20.42
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.57.6
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.102.2
+	github.com/azcov/go-mayar-sdk v0.1.1
 	github.com/clerk/clerk-sdk-go/v2 v2.6.0
 	github.com/dgraph-io/ristretto v0.2.0
 	github.com/go-co-op/gocron/v2 v2.21.2
